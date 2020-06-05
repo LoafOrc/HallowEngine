@@ -21,10 +21,17 @@ public class Renderer {
   }
   void draw() {
     rotate(Object.Direction);
-    if(Type == Shape.Rectangle)
+    if(Type == Shape.Rectangle) {
+      //Render Rectangle / Square
       rect(Object.Position.x, Object.Position.y, Object.Size.x, Object.Size.y);
+    }
+    if(Type == Shape.Ellipse) {
+      //Render Ellipse / Circle
+      ellipse(Object.Position.x, Object.Position.y, Object.Size.x, Object.Size.y);
+    }
   }
 }
 enum Shape {
-  Rectangle
+  Rectangle,
+  Ellipse
 }
