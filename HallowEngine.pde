@@ -14,12 +14,26 @@ public class Vector2 {
 }
 //Rendenering
 public class Renderer {
-  public Shape Type;
+  public Shape Type = Shape.Rectangle;
+  public boolean AlwaysDraw = false;
   private Transform Object;
   Renderer(Transform _object) {
     Object = _object;
   }
   void draw() {
+    
+    if(!AlwaysDraw) {
+    //Check to see if the object is within the window. If not don't draw beacuse we won't see it
+    if(Object.Position.x <= -Object.Size.x)
+      return;
+    if(Object.Position.x >= width)
+      return;
+    if(Object.Position.y <= -Object.Size.y)
+      return;
+    if(Object.Position.y >= height)
+      return;
+    }
+    
     rotate(Object.Direction);
     if(Type == Shape.Rectangle) {
       //Render Rectangle / Square
@@ -34,4 +48,7 @@ public class Renderer {
 enum Shape {
   Rectangle,
   Ellipse
+}
+//Physics
+public class Rigidbody {
 }
