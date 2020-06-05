@@ -23,15 +23,15 @@ public class Renderer {
   void draw() {
     
     if(!AlwaysDraw) {
-    //Check to see if the object is within the window. If not don't draw beacuse we won't see it
-    if(Object.Position.x <= -Object.Size.x)
-      return;
-    if(Object.Position.x >= width)
-      return;
-    if(Object.Position.y <= -Object.Size.y)
-      return;
-    if(Object.Position.y >= height)
-      return;
+      //Check to see if the object is within the window. If not don't draw beacuse we won't see it
+      if(Object.Position.x <= -Object.Size.x)
+        return;
+      if(Object.Position.x >= width)
+        return;
+      if(Object.Position.y <= -Object.Size.y)
+        return;
+      if(Object.Position.y >= height)
+        return;
     }
     
     rotate(Object.Direction);
@@ -50,5 +50,13 @@ enum Shape {
   Ellipse
 }
 //Physics
+public final float Gravity = 4;
 public class Rigidbody {
+  private Transform Object;
+  Rigidbody(Transform _obj) {
+    Object = _obj;
+  }
+  void Gravity() {
+    Object.Position.y += Gravity;
+  }
 }
