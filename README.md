@@ -1,4 +1,4 @@
-# Hallow Engine
+# Hallow Engine - Expiremental
 ## A Engine for processing
 
-This engine is meant for people transitioning into coding. This engine is made just for fun and as a side-project.
+This branch has expiremental features, they will be merged into the master branch when they are properly working and have little bugs
