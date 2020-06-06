@@ -3,6 +3,7 @@ public class Transform {
   Vector2 Position = new Vector2();
   Vector2 Size = new Vector2();
   float Direction;
+  public Shape Type = Shape.Rectangle;
 }
 public class Vector2 {
   float x,y;
@@ -14,7 +15,6 @@ public class Vector2 {
 }
 //Rendenering
 public class Renderer {
-  public Shape Type = Shape.Rectangle;
   public boolean AlwaysDraw = false;
   private Transform Object;
   Renderer(Transform _object) {
@@ -35,11 +35,11 @@ public class Renderer {
     }
     
     rotate(Object.Direction);
-    if(Type == Shape.Rectangle) {
+    if(Object.Type == Shape.Rectangle) {
       //Render Rectangle / Square
       rect(Object.Position.x, Object.Position.y, Object.Size.x, Object.Size.y);
     }
-    if(Type == Shape.Ellipse) {
+    if(Object.Type == Shape.Ellipse) {
       //Render Ellipse / Circle
       ellipse(Object.Position.x, Object.Position.y, Object.Size.x, Object.Size.y);
     }
@@ -58,5 +58,21 @@ public class Rigidbody {
   }
   void Gravity() {
     Object.Position.y += Gravity;
+  }
+}
+//Collider
+public class Collider {
+  public Transform Object;
+  
+  Collider(Transform _obj) {
+    Object = _obj;
+  }
+  boolean Collide(Transform _Obj) {
+    if(Object.Position.x >= _Obj.Position.x && Object.Position.x + Object.Size.x <= _Obj.Position.x + _Obj.Size.x) {
+      if(Object.Position.y >= _Obj.Position.y && Object.Position.y + Object.Size.y <= _Obj.Position.y + _Obj.Size.y) {
+        return true;
+      }
+    }
+    return false;
   }
 }
