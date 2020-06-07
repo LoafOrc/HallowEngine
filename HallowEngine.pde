@@ -12,6 +12,13 @@ public class Vector2 {
     x = _x;
     y = _y;
   }
+  PVector Convert() {
+    return new PVector(x, y);
+  }
+  void Lerp(Vector2 _pos, float Speed) {
+    x = lerp(x, _pos.x, Speed);
+    y = lerp(y, _pos.y, Speed);
+  }
 }
 //Rendenering
 public class Renderer {
@@ -50,14 +57,16 @@ enum Shape {
   Ellipse
 }
 //Physics
-public final float Gravity = 4;
+public final float Gravity = 7;
 public class Rigidbody {
   private Transform Object;
+  public boolean UseGravity = true;
   Rigidbody(Transform _obj) {
     Object = _obj;
   }
-  void Gravity() {
-    Object.Position.y += Gravity;
+  void draw() {
+    if(UseGravity)
+      Object.Position.y += Gravity;
   }
 }
 //Collider
@@ -67,12 +76,16 @@ public class Collider {
   Collider(Transform _obj) {
     Object = _obj;
   }
-  boolean Collide(Transform _Obj) {
-    if(Object.Position.x >= _Obj.Position.x && Object.Position.x + Object.Size.x <= _Obj.Position.x + _Obj.Size.x) {
-      if(Object.Position.y >= _Obj.Position.y && Object.Position.y + Object.Size.y <= _Obj.Position.y + _Obj.Size.y) {
-        return true;
-      }
-    }
+  boolean CollideBottom(Transform _Obj) {
+    
+    if(Object.Position.x + Object.Size.x >= _Obj.Position.x && Object.Position.y + Object.Size.y >= _Obj.Position.y && Object.Position.x <= _Obj.Position.x + _Obj.Size.x)
+      return true;
+    
+    //if(Object.Position.x >= _Obj.Position.x && Object.Position.x + Object.Size.x <= _Obj.Position.x + _Obj.Size.x) {
+    //  if(Object.Position.y >= _Obj.Position.y && Object.Position.y + Object.Size.y <= _Obj.Position.y + _Obj.Size.y) {
+    //    return true;
+    //  }
+    //}
     return false;
   }
 }
