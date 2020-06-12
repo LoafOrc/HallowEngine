@@ -89,3 +89,22 @@ public class Collider {
     return false;
   }
 }
+public _File File = new _File();
+public class _File {
+  String[] Read(String _Path) { return loadStrings(_Path); }
+  void Save(String _Path, String[] _Data) {
+    
+    //Setup Writer
+    PrintWriter _Writer = createWriter(_Path);
+    
+    //Loop through all the data in the array
+    for(int _i = 0; _i < _Data.length; _i++) {
+      _Writer.println(_Data[_i]);
+    }
+    
+    //Finish with the Writer
+    _Writer.flush();
+    _Writer.close();
+    
+  }
+}
